@@ -72,7 +72,7 @@ lm: lm {
 
                 default_layer {
                         bindings = <
-TAB &kp Q &kp W &kp F &kp P &kp G &kp J &kpL &kp U &kp Y &kp SEMICOLON &kp BACKSPACE
+TAB &kp Q &kp W &kp F &kp P &kp G &kp J &kp L &kp U &kp Y &kp SEMICOLON &kp BACKSPACE
 &kp LSFT &kp A &kp R &kp S &kp T &kp D &kp H &kp N &kp E &kp I &kp O ENTER
 &kp LCTL &kp Z &kp X &kp C &kp V &kp B &kp K &kp M &kp COMMA &kp DOT &kp SLASH &kp RSFT 
 &lm 4 LCTL &kp LALT &lp LWR SPACE &mo RSE &kp RCTL &kp RALT
