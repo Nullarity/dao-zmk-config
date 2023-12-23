@@ -75,7 +75,7 @@ lm: lm {
 TAB &kp Q &kp W &kp F &kp P &kp G &kp J &kp L &kp U &kp Y &kp SEMICOLON &kp BACKSPACE
 &kp LSFT &kp A &kp R &kp S &kp T &kp D &kp H &kp N &kp E &kp I &kp O ENTER
 &kp LCTL &kp Z &kp X &kp C &kp V &kp B &kp K &kp M &kp COMMA &kp DOT &kp SLASH &kp RSFT 
-&lm 4 LCTL &kp LALT &lp LWR SPACE &mo RSE &kp RCTL &kp RALT
+&lm 4 LCTL &kp LALT &lt LWR SPACE &mo RSE &kp RCTL &kp RALT
 
 
 
@@ -91,11 +91,17 @@ TAB &kp Q &kp W &kp F &kp P &kp G &kp J &kp L &kp U &kp Y &kp SEMICOLON &kp BACK
                 };
                 lower_layer {
                         bindings = <
-          &mt LGUI F1      &kp F2     &kp F3   &kp F4        &kp F5     &kp F6      &kp F7      &kp F8     &kp F9        &kp F10    &kp F11    &kp F12           
+TD(DANCE_MC),_,TD(DANCE_F1),TD(DANCE_F2),TD(DANCE_F3),TD(DANCE_F4),_,KC_KP_7,KC_KP_8,KC_KP_9,KC_KP_MINUS,KC_KP_PLUS,
+_,TD(DANCE_ESC),TD(DANCE_F5),TD(DANCE_F6),TD(DANCE_F7),TD(DANCE_F8),_,KC_KP_4,KC_KP_5,KC_KP_6,KC_KP_0,KC_RSFT,
+_,TD(DANCE_CC),TD(DANCE_F9),TD(DANCE_F10),TD(DANCE_F11),TD(DANCE_F12),_,KC_KP_1,KC_KP_2,KC_KP_3,KC_KP_SLASH,KC_KP_ASTERISK,
+    _,_,_,_,_,_
+												
+/*          &mt LGUI F1      &kp F2     &kp F3   &kp F4        &kp F5     &kp F6      &kp F7      &kp F8     &kp F9        &kp F10    &kp F11    &kp F12           
           &mt LCTRL PLUS   &kp EXCL   &kp AT   &kp HASH      &kp DLLR   &kp PRCNT   &kp CARET   &kp AMPS   &kp STAR      &kp LPAR   &kp RPAR   &mt RCTRL MINUS
           &mt LALT EQUAL   &kp N1     &kp N2   &kp N3        &kp N4     &kp N5      &kp N6      &kp N7     &kp N8        &kp N9     &kp N0     &kp RALT
                                                &lt ADJ TAB   &trans     &trans      &trans      &trans     &lt ADJ DEL
-                        >;
+*/
+ >;
                 };
 
                 raise_layer {
