@@ -65,20 +65,18 @@ lm: lm {
             flavor = "tap-preferred";
             bindings = <&kp>, <&kp>;
         };
+
     };
 
 		keymap {
                 compatible = "zmk,keymap";
 
-                default_layer {
+default_layer {
                         bindings = <
 TAB &kp Q &kp W &kp F &kp P &kp G &kp J &kp L &kp U &kp Y &kp SEMICOLON &kp BACKSPACE
 &kp LSFT &kp A &kp R &kp S &kp T &kp D &kp H &kp N &kp E &kp I &kp O ENTER
 &kp LCTL &kp Z &kp X &kp C &kp V &kp B &kp K &kp M &kp COMMA &kp DOT &kp SLASH &kp RSFT 
 &lm 4 LCTL &kp LALT &lt LWR SPACE &mo RSE &kp RCTL &kp RALT
-
-
-
 
 
 /*
@@ -89,12 +87,13 @@ TAB &kp Q &kp W &kp F &kp P &kp G &kp J &kp L &kp U &kp Y &kp SEMICOLON &kp BACK
 */
 											 >;
                 };
-                lower_layer {
+
+lower_layer {
                         bindings = <
-TD(DANCE_MC),_,TD(DANCE_F1),TD(DANCE_F2),TD(DANCE_F3),TD(DANCE_F4),_,KC_KP_7,KC_KP_8,KC_KP_9,KC_KP_MINUS,KC_KP_PLUS,
-_,TD(DANCE_ESC),TD(DANCE_F5),TD(DANCE_F6),TD(DANCE_F7),TD(DANCE_F8),_,KC_KP_4,KC_KP_5,KC_KP_6,KC_KP_0,KC_RSFT,
-_,TD(DANCE_CC),TD(DANCE_F9),TD(DANCE_F10),TD(DANCE_F11),TD(DANCE_F12),_,KC_KP_1,KC_KP_2,KC_KP_3,KC_KP_SLASH,KC_KP_ASTERISK,
-    _,_,_,_,_,_
+&mt MB3 MB1 &trans &kp F1 &kp F2 &kp F3 &kp F4 &trans &kp KP_N7 &kp KP_N8 &kp KP_N9 &kp KP_MINUS &kp KP_PLUS
+&trans &kp ESC &kp F5 &kp F6 &kp F7 &kp F8 &trans &kp KP_N4 &kp KP_N5 &kp KP_N6 &kp KP_N0 &trans
+&trans &trans &kp F9 &kp F10 &kp F11 &kp F12 &trans &kp KP_N1 &kp KP_N2 &kp KP_N3 &kp KP_SLASH &kp KP_ASTERISK
+&trans &trans &trans &trans &trans &trans
 												
 /*          &mt LGUI F1      &kp F2     &kp F3   &kp F4        &kp F5     &kp F6      &kp F7      &kp F8     &kp F9        &kp F10    &kp F11    &kp F12           
           &mt LCTRL PLUS   &kp EXCL   &kp AT   &kp HASH      &kp DLLR   &kp PRCNT   &kp CARET   &kp AMPS   &kp STAR      &kp LPAR   &kp RPAR   &mt RCTRL MINUS
@@ -106,11 +105,18 @@ _,TD(DANCE_CC),TD(DANCE_F9),TD(DANCE_F10),TD(DANCE_F11),TD(DANCE_F12),_,KC_KP_1,
 
                 raise_layer {
                         bindings = <
-          &mt LGUI KP_NUM   &kp KP_SLASH      &kp KP_N7   &kp KP_N8   &kp KP_N9   &kp KP_MINUS   &kp C_VOL_UP   &kp HOME   &kp PSCRN   &kp PG_UP   &kp SLCK          &kp CLCK   
+&kp EXCL &kp AT &kp HASH &kp DLLR &kp PRCNT &kp CARET &trans &kp LC(C) &kp UP &kp LC(V) &kp K_APP &kp DEL
+&trans &kp STAR &kp LPAR &kp RPAR &kp MINUS &kp EQUAL &kp PG_UP &kp LEFT &kp DOWN &kp RIGHT &kp SINGLE_QUOTE &kp LC(LS(ENTER))
+&trans &kp BSLH &kp LBKT &kp RBKT &kp GRAVE &kp AMPS &kp PG_DN &mt HOME LS(HOME) &kp LC(X) &mt END LS(End) &kp RGUI &trans
+
+&trans &trans &mt LCTRL SPACE &trans &trans &
+
+/*          &mt LGUI KP_NUM   &kp KP_SLASH      &kp KP_N7   &kp KP_N8   &kp KP_N9   &kp KP_MINUS   &kp C_VOL_UP   &kp HOME   &kp PSCRN   &kp PG_UP   &kp SLCK          &kp CLCK   
           &mt LCTRL EQUAL   &kp KP_MULTIPLY   &kp KP_N4   &kp KP_N5   &kp KP_N6   &kp KP_PLUS    &kp C_MUTE     &kp LEFT   &kp UP      &kp RIGHT   &kp INS           &mt RCTRL  K_APP
           &kp LALT          &kp KP_N0         &kp KP_N1   &kp KP_N2   &kp KP_N3   &kp KP_DOT     &kp C_VOL_DN   &kp END    &kp DOWN    &kp PG_DN   &kp PAUSE_BREAK   &kp RALT
                                                           &trans      &trans      &lt ADJ RET    &lt ADJ ESC    &trans     &trans
-                        >;
+*/
+>;
                 };
                 adjust_layer {
                         bindings = <
