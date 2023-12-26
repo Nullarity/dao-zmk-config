@@ -7,24 +7,26 @@
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/mouse.h>
 
 #define DEF 0
 #define LWR 1
 #define RSE 2
-#define ADJ 3
+#define LR3 3
+#define ADJ 4
 
 #define AS(keycode) &as LS(keycode) keycode
 
-&lt { quick_tap_ms = <200>; };
-&mt { quick_tap_ms = <200>; };
+&lt { quick_tap_ms = <110>; };
 
+/*
 / {
     chosen {
         zmk,matrix_transform = &default_transform;
         // zmk,matrix_transform = &extra_keys_transform;
     };
 };
-
+*/
 
 / {
 	/**
@@ -56,8 +58,16 @@ lm: lm {
 				;
 		};
  
+		conditional_layers {
+			compatible = "zmk,conditional-layers";
+			tri_layer {
+				if-layers = <LWR RSE>;
+				then-layer = <ADJ>;
+			};
+		};
+ 
  		behaviors {
-        as: auto_shift {
+		as: auto_shift {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             tapping_term_ms = <135>;
@@ -65,66 +75,139 @@ lm: lm {
             flavor = "tap-preferred";
             bindings = <&kp>, <&kp>;
         };
+        f1: tap_dance_f1 {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <155>;
+            bindings = <AS(F1)>, <AS(LC(F1))>, <AS(LA(F1))>;
+        };
+        f2: tap_dance_f2 {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <155>;
+            bindings = <AS(F2)>, <AS(LC(F2))>, <AS(LA(F2))>;
+        };
+        f3: tap_dance_f3 {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <155>;
+            bindings = <AS(F3)>, <AS(LC(F3))>, <AS(LA(F3))>;
+        };
+        f4: tap_dance_f4 {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <155>;
+            bindings = <AS(F4)>, <AS(LC(F4))>, <AS(LA(F4))>;
+        };
+        f5: tap_dance_f5 {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <155>;
+            bindings = <AS(F5)>, <AS(LC(F5))>, <AS(LA(F5))>;
+        };
+        f6: tap_dance_f6 {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <155>;
+            bindings = <AS(F6)>, <AS(LC(F6))>, <AS(LA(F6))>;
+        };
+        f7: tap_dance_f7 {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <155>;
+            bindings = <AS(F7)>, <AS(LC(F7))>, <AS(LA(F7))>;
+        };
+        f8: tap_dance_f8 {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <155>;
+            bindings = <AS(F8)>, <AS(LC(F8))>, <AS(LA(F8))>;
+        };
+        f9: tap_dance_f9 {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <155>;
+            bindings = <AS(F9)>, <AS(LC(F9))>, <AS(LA(F9))>;
+        };
+        f10: tap_dance_f10 {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <155>;
+            bindings = <AS(F10)>, <AS(LC(F10))>, <AS(LA(F10))>;
+        };
+        f11: tap_dance_f11 {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <155>;
+            bindings = <AS(F11)>, <AS(LC(F11))>, <AS(LA(F11))>;
+        };
+				f12: tap_dance_f12 {
+						compatible = "zmk,behavior-tap-dance";
+						#binding-cells = <0>;
+						tapping-term-ms = <155>;
+						bindings = <AS(F12)>, <AS(LC(F12))>, <AS(LA(F12))>;
+				};
+ 				home: tap_dance_home {
+						compatible = "zmk,behavior-tap-dance";
+						#binding-cells = <0>;
+						tapping-term-ms = <135>;
+						bindings = <AS(HOME)>, <AS(LC(HOME))>, <AS(LA(HOME))>;
+				};
+ 				end: tap_dance_end {
+						compatible = "zmk,behavior-tap-dance";
+						#binding-cells = <0>;
+						tapping-term-ms = <135>;
+						bindings = <AS(END)>, <AS(LC(END))>, <AS(LA(END))>;
+				};
+  };
 
-    };
-
-		keymap {
-                compatible = "zmk,keymap";
+keymap {
+compatible = "zmk,keymap";
 
 default_layer {
-                        bindings = <
-TAB &kp Q &kp W &kp F &kp P &kp G &kp J &kp L &kp U &kp Y &kp SEMICOLON &kp BACKSPACE
-&kp LSFT &kp A &kp R &kp S &kp T &kp D &kp H &kp N &kp E &kp I &kp O ENTER
-&kp LCTL &kp Z &kp X &kp C &kp V &kp B &kp K &kp M &kp COMMA &kp DOT &kp SLASH &kp RSFT 
-&lm 4 LCTL &kp LALT &lt LWR SPACE &mo RSE &kp RCTL &kp RALT
-
-
-/*
-          &mt LGUI RBKT     &kp Q   &kp W   &kp E         &kp R             &kp T         &kp Y         &kp U            &kp I         &kp O     &kp P      &kp LBKT       
-          &mt LCTRL GRAVE   &kp A   &kp S   &kp D         &kp F             &kp G         &kp H         &kp J            &kp K         &kp L     &kp SEMI   &mt RCTRL SQT
-          &mt LALT MINUS    &kp Z   &kp X   &kp C         &kp V             &kp B         &kp N         &kp M            &kp COMMA     &kp DOT   &kp FSLH   &mt RALT BSLH
-                                            &lt RSE TAB   &mt LSHFT SPACE   &lt LWR RET   &lt LWR ESC   &mt RSHFT BSPC   &lt RSE DEL
-*/
-											 >;
-                };
+label="646546";
+bindings = <
+AS(TAB) AS(Q) AS(W) AS(F) AS(P) AS(G) AS(J) AS(L) AS(U) AS(Y) AS(SEMICOLON) &kp BACKSPACE
+&kp LSFT AS(A) AS(R) AS(S) AS(T) AS(D) AS(H) AS(N) AS(E) AS(I) AS(O) AS(ENTER)
+&kp LCTL AS(Z) AS(X) AS(C) AS(V) AS(B) AS(K) AS(M) AS(COMMA) AS(DOT) AS(SLASH) &kp RSFT 
+&lm LR3 LCTL &kp LALT &lt LWR SPACE &mo RSE &kp RCTL &kp RALT
+>;
+};
 
 lower_layer {
-                        bindings = <
-&mt MB3 MB1 &trans &kp F1 &kp F2 &kp F3 &kp F4 &trans &kp KP_N7 &kp KP_N8 &kp KP_N9 &kp KP_MINUS &kp KP_PLUS
-&trans &kp ESC &kp F5 &kp F6 &kp F7 &kp F8 &trans &kp KP_N4 &kp KP_N5 &kp KP_N6 &kp KP_N0 &trans
-&trans &trans &kp F9 &kp F10 &kp F11 &kp F12 &trans &kp KP_N1 &kp KP_N2 &kp KP_N3 &kp KP_SLASH &kp KP_ASTERISK
+bindings = <
+&mkp MB3 &trans &f1 &f2 &f3 &f4 &trans &kp KP_N7 &kp KP_N8 &kp KP_N9 &kp KP_MINUS &kp KP_PLUS
+&trans &kp ESC &f5 &f6 &f7 &f8 &trans &kp KP_N4 &kp KP_N5 &kp KP_N6 &kp KP_N0 &trans
+&trans &trans &f9 &f10 &f11 &f12 &trans &kp KP_N1 &kp KP_N2 &kp KP_N3 &kp KP_SLASH &kp KP_ASTERISK
 &trans &trans &trans &trans &trans &trans
-												
-/*          &mt LGUI F1      &kp F2     &kp F3   &kp F4        &kp F5     &kp F6      &kp F7      &kp F8     &kp F9        &kp F10    &kp F11    &kp F12           
-          &mt LCTRL PLUS   &kp EXCL   &kp AT   &kp HASH      &kp DLLR   &kp PRCNT   &kp CARET   &kp AMPS   &kp STAR      &kp LPAR   &kp RPAR   &mt RCTRL MINUS
-          &mt LALT EQUAL   &kp N1     &kp N2   &kp N3        &kp N4     &kp N5      &kp N6      &kp N7     &kp N8        &kp N9     &kp N0     &kp RALT
-                                               &lt ADJ TAB   &trans     &trans      &trans      &trans     &lt ADJ DEL
-*/
- >;
-                };
-
-                raise_layer {
-                        bindings = <
-&kp EXCL &kp AT &kp HASH &kp DLLR &kp PRCNT &kp CARET &trans &kp LC(C) &kp UP &kp LC(V) &kp K_APP &kp DEL
-&trans &kp STAR &kp LPAR &kp RPAR &kp MINUS &kp EQUAL &kp PG_UP &kp LEFT &kp DOWN &kp RIGHT &kp SINGLE_QUOTE &kp LC(LS(ENTER))
-&trans &kp BSLH &kp LBKT &kp RBKT &kp GRAVE &kp AMPS &kp PG_DN &mt HOME LS(HOME) &kp LC(X) &mt END LS(End) &kp RGUI &trans
-
-&trans &trans &mt LCTRL SPACE &trans &trans &
-
-/*          &mt LGUI KP_NUM   &kp KP_SLASH      &kp KP_N7   &kp KP_N8   &kp KP_N9   &kp KP_MINUS   &kp C_VOL_UP   &kp HOME   &kp PSCRN   &kp PG_UP   &kp SLCK          &kp CLCK   
-          &mt LCTRL EQUAL   &kp KP_MULTIPLY   &kp KP_N4   &kp KP_N5   &kp KP_N6   &kp KP_PLUS    &kp C_MUTE     &kp LEFT   &kp UP      &kp RIGHT   &kp INS           &mt RCTRL  K_APP
-          &kp LALT          &kp KP_N0         &kp KP_N1   &kp KP_N2   &kp KP_N3   &kp KP_DOT     &kp C_VOL_DN   &kp END    &kp DOWN    &kp PG_DN   &kp PAUSE_BREAK   &kp RALT
-                                                          &trans      &trans      &lt ADJ RET    &lt ADJ ESC    &trans     &trans
-*/
 >;
-                };
-                adjust_layer {
-                        bindings = <
- &bootloader   &none          &none          &none          &none          &none          &none          &none          &none          &none          &none          &bootloader
- &bt BT_CLR    &bt BT_SEL 0   &bt BT_SEL 1   &bt BT_SEL 2   &bt BT_SEL 3   &bt BT_SEL 4   &bt BT_SEL 4   &bt BT_SEL 3   &bt BT_SEL 2   &bt BT_SEL 1   &bt BT_SEL 0   &bt BT_CLR
- &sys_reset        &none          &none          &none          &none          &none          &none          &none          &none          &none          &none          &sys_reset
-                                             &trans         &none          &trans         &trans         &none          &trans
-                        >;
-                };
-        };
+};
+
+raise_layer {
+bindings = <
+&kp EXCL &kp AT &kp HASH &kp DLLR &kp PRCNT &kp CARET &kp PG_UP &kp LC(INS) &kp UP &kp LS(INS) &kp K_APP &kp DEL
+&trans &kp STAR &kp LPAR &kp RPAR AS(MINUS) AS(EQUAL) &kp PG_DN &kp LEFT &kp DOWN &kp RIGHT AS(SINGLE_QUOTE) &kp LC(LS(ENTER))
+&trans AS(BSLH) AS(LBKT) AS(RBKT) AS(GRAVE) &kp AMPS &trans &home &kp LC(X) &end &kp RGUI &trans
+&trans &trans &mt LCTRL SPACE &trans &trans
+>;
+};
+
+LR3 {
+	bindings = <
+		&mkp MB1 &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
+		&trans &trans &trans &trans &trans &trans &trans &kp KP_MINUS &trans &kp KP_PLUS &trans &kp LS(F15)
+		&trans &trans &trans &trans &trans &trans &trans &kp RA(RS(END)) &trans &kp RA(RS(HOME)) &trans &trans
+		&trans &trans &trans &trans &trans &trans
+		>;
+};
+
+adjust_layer {
+	bindings = <
+&kp KP_NUM &trans &trans &trans &trans &trans &kp K_VOL_UP &kp RG(LA(LC(LS(N7)))) &kp RG(LA(LC(LS(N8)))) &kp RG(LA(LC(LS(N9)))) &trans &kp PAUSE_BREAK
+&kp CAPS &kp STAR &trans &trans &trans &trans &kp K_VOL_DN &kp RG(LA(LC(LS(N4)))) &kp RG(LA(LC(LS(N5)))) &kp RG(LA(LC(LS(N6)))) &kp RG(LA(LC(LS(KP_N0)))) &trans
+&kp INS &trans &trans &trans &trans &trans &kp K_MUTE &kp RG(LA(LC(LS(N1)))) &kp RG(LA(LC(LS(N2)))) &kp RG(LA(LC(LS(N3)))) &trans &trans
+&trans &trans &trans &trans &bootloader &trans
+>;
+};
+};
 };
