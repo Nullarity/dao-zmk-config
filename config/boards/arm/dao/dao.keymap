@@ -68,13 +68,14 @@ lm: lm {
  
  		behaviors {
 		as: auto_shift {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            tapping_term_ms = <135>;
-            quick_tap_ms = <0>;
-            flavor = "tap-preferred";
-            bindings = <&kp>, <&kp>;
-        };
+						compatible = "zmk,behavior-hold-tap";
+						#binding-cells = <2>;
+						flavor = "tap-preferred";
+						tapping-term-ms = <135>;
+						quick-tap-ms = <135>;
+						require-prior-idle-ms = <0>;
+						bindings = <&kp>, <&kp>;
+       };
         f1: tap_dance_f1 {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
@@ -147,18 +148,6 @@ lm: lm {
 						tapping-term-ms = <155>;
 						bindings = <AS(F12)>, <AS(LC(F12))>, <AS(LA(F12))>;
 				};
- 				home: tap_dance_home {
-						compatible = "zmk,behavior-tap-dance";
-						#binding-cells = <0>;
-						tapping-term-ms = <135>;
-						bindings = <AS(HOME)>, <AS(LC(HOME))>, <AS(LA(HOME))>;
-				};
- 				end: tap_dance_end {
-						compatible = "zmk,behavior-tap-dance";
-						#binding-cells = <0>;
-						tapping-term-ms = <135>;
-						bindings = <AS(END)>, <AS(LC(END))>, <AS(LA(END))>;
-				};
   };
 
 keymap {
@@ -185,9 +174,9 @@ bindings = <
 
 raise_layer {
 bindings = <
-&kp EXCL &kp AT &kp HASH &kp DLLR &kp PRCNT &kp CARET &kp PG_UP &kp LC(INS) &kp UP &kp LS(INS) &kp K_APP &kp DEL
+&kp EXCL &kp AT &kp HASH &kp DLLR &kp PRCNT &kp CARET &kp PG_UP &kp LC(C) &kp UP &kp LC(V) &kp K_APP &kp DEL
 &trans &kp STAR &kp LPAR &kp RPAR AS(MINUS) AS(EQUAL) &kp PG_DN &kp LEFT &kp DOWN &kp RIGHT AS(SINGLE_QUOTE) &kp LC(LS(ENTER))
-&trans AS(BSLH) AS(LBKT) AS(RBKT) AS(GRAVE) &kp AMPS &trans &home &kp LC(X) &end &kp RGUI &trans
+&trans AS(BSLH) AS(LBKT) AS(RBKT) AS(GRAVE) &kp AMPS &trans AS(HOME) &kp LC(X) AS(END) &kp RGUI &trans
 &trans &trans &mt LCTRL SPACE &trans &trans
 >;
 };
@@ -203,10 +192,10 @@ LR3 {
 
 adjust_layer {
 	bindings = <
-&kp KP_NUM &trans &trans &trans &trans &trans &kp K_VOL_UP &kp RG(LA(LC(LS(N7)))) &kp RG(LA(LC(LS(N8)))) &kp RG(LA(LC(LS(N9)))) &trans &kp PAUSE_BREAK
+&kp KP_NUM &trans &trans &trans &trans &trans &kp K_VOL_UP &kp RG(LA(LC(LS(N7)))) &kp RG(RA(N8)) &kp RG(LA(LC(LS(N9)))) &trans &kp PAUSE_BREAK
 &kp CAPS &kp STAR &trans &trans &trans &trans &kp K_VOL_DN &kp RG(LA(LC(LS(N4)))) &kp RG(LA(LC(LS(N5)))) &kp RG(LA(LC(LS(N6)))) &kp RG(LA(LC(LS(KP_N0)))) &trans
-&kp INS &trans &trans &trans &trans &trans &kp K_MUTE &kp RG(LA(LC(LS(N1)))) &kp RG(LA(LC(LS(N2)))) &kp RG(LA(LC(LS(N3)))) &trans &trans
-&trans &trans &trans &trans &bootloader &trans
+&kp INS &trans &trans &trans &trans &trans &kp K_PP &kp RG(LA(LC(LS(N1)))) &kp RG(LA(LC(LS(N2)))) &kp RG(LA(LC(LS(N3)))) &trans &trans
+&trans &trans &trans &trans &bt BT_CLR &trans
 >;
 };
 };
