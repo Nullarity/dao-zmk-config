@@ -10,12 +10,18 @@
 #include <dt-bindings/zmk/mouse.h>
 
 #define DEF 0
-#define LWR 1
-#define RSE 2
-#define LR3 3
-#define ADJ 4
+#define GAM 1
+#define LWR 2
+#define RSE 3
+#define LR3 4
+#define NMB 5
+#define ADJ 6
 
 #define AS(keycode) &as LS(keycode) keycode
+#define ASR(keycode) &asr LS(keycode) keycode
+#define ASF(keycode) &asf LS(keycode) keycode
+#define ASS(keycode) &ass LS(keycode) keycode
+#define AA(keycode) &ass LA(keycode) keycode
 
 &lt { quick_tap_ms = <110>; };
 
@@ -44,7 +50,7 @@ lm: lm {
 			compatible = "zmk,behavior-macro-two-param";
 			wait-ms = <0>;
 			tap-ms = <0>;
-#binding-cells = <2>;
+			#binding-cells = <2>;
 			bindings
 				= <&macro_param_1to1>
 				, <&macro_press &mo MACRO_PLACEHOLDER>
@@ -67,107 +73,168 @@ lm: lm {
 		};
  
  		behaviors {
-		as: auto_shift {
+		asr: auto_shift_rapid {
 						compatible = "zmk,behavior-hold-tap";
 						#binding-cells = <2>;
 						flavor = "tap-preferred";
 						tapping-term-ms = <135>;
-						quick-tap-ms = <135>;
-						require-prior-idle-ms = <0>;
+						/*require-prior-idle-ms = <135>;*/
 						bindings = <&kp>, <&kp>;
        };
-        f1: tap_dance_f1 {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            tapping-term-ms = <155>;
-            bindings = <AS(F1)>, <AS(LC(F1))>, <AS(LA(F1))>;
-        };
-        f2: tap_dance_f2 {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            tapping-term-ms = <155>;
-            bindings = <AS(F2)>, <AS(LC(F2))>, <AS(LA(F2))>;
-        };
-        f3: tap_dance_f3 {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            tapping-term-ms = <155>;
-            bindings = <AS(F3)>, <AS(LC(F3))>, <AS(LA(F3))>;
-        };
-        f4: tap_dance_f4 {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            tapping-term-ms = <155>;
-            bindings = <AS(F4)>, <AS(LC(F4))>, <AS(LA(F4))>;
-        };
-        f5: tap_dance_f5 {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            tapping-term-ms = <155>;
-            bindings = <AS(F5)>, <AS(LC(F5))>, <AS(LA(F5))>;
-        };
-        f6: tap_dance_f6 {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            tapping-term-ms = <155>;
-            bindings = <AS(F6)>, <AS(LC(F6))>, <AS(LA(F6))>;
-        };
-        f7: tap_dance_f7 {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            tapping-term-ms = <155>;
-            bindings = <AS(F7)>, <AS(LC(F7))>, <AS(LA(F7))>;
-        };
-        f8: tap_dance_f8 {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            tapping-term-ms = <155>;
-            bindings = <AS(F8)>, <AS(LC(F8))>, <AS(LA(F8))>;
-        };
-        f9: tap_dance_f9 {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            tapping-term-ms = <155>;
-            bindings = <AS(F9)>, <AS(LC(F9))>, <AS(LA(F9))>;
-        };
-        f10: tap_dance_f10 {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            tapping-term-ms = <155>;
-            bindings = <AS(F10)>, <AS(LC(F10))>, <AS(LA(F10))>;
-        };
-        f11: tap_dance_f11 {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            tapping-term-ms = <155>;
-            bindings = <AS(F11)>, <AS(LC(F11))>, <AS(LA(F11))>;
-        };
-				f12: tap_dance_f12 {
-						compatible = "zmk,behavior-tap-dance";
-						#binding-cells = <0>;
+		as: auto_shift {
+						compatible = "zmk,behavior-hold-tap";
+						#binding-cells = <2>;
+						flavor = "tap-preferred";
 						tapping-term-ms = <155>;
-						bindings = <AS(F12)>, <AS(LC(F12))>, <AS(LA(F12))>;
-				};
+						/*require-prior-idle-ms = <135>;*/
+						bindings = <&kp>, <&kp>;
+       };
+		ass: auto_shift_slow {
+						compatible = "zmk,behavior-hold-tap";
+						#binding-cells = <2>;
+						flavor = "tap-preferred";
+						tapping-term-ms = <155>;
+						bindings = <&kp>, <&kp>;
+       };
+		asf: auto_shift_function_keys {
+						compatible = "zmk,behavior-hold-tap";
+						#binding-cells = <2>;
+						flavor = "tap-preferred";
+						tapping-term-ms = <0>;
+						bindings = <&kp>, <&kp>;
+       };
+		volUp: volUp {
+				compatible = "zmk,behavior-mod-morph";
+				#binding-cells = <0>;
+				bindings = <&kp K_VOL_UP>, <&kp K_VOL_UP>;
+				mods = <(MOD_LCTL)>;
+			};
+
+		volDown: volDown {
+				compatible = "zmk,behavior-mod-morph";
+				#binding-cells = <0>;
+				bindings = <&kp K_VOL_DN>, <&kp K_VOL_DN>;
+				mods = <(MOD_LCTL)>;
+			};
+
+		pause: pause {
+				compatible = "zmk,behavior-mod-morph";
+				#binding-cells = <0>;
+				bindings = <&kp K_PP>, <&kp K_PP>;
+				mods = <(MOD_LCTL)>;
+			};
+
+		f1: tap_dance_f1 {
+				compatible = "zmk,behavior-tap-dance";
+				#binding-cells = <0>;
+				tapping-term-ms = <155>;
+				bindings = <ASF(F1)>, <ASF(LC(F1))>, <&kp LA(F1)>;
+		};
+		f2: tap_dance_f2 {
+				compatible = "zmk,behavior-tap-dance";
+				#binding-cells = <0>;
+				tapping-term-ms = <155>;
+				bindings = <ASF(F2)>, <ASF(LC(F2))>, <&kp LA(F2)>;
+		};
+		f3: tap_dance_f3 {
+				compatible = "zmk,behavior-tap-dance";
+				#binding-cells = <0>;
+				tapping-term-ms = <155>;
+				bindings = <ASF(F3)>, <ASF(LC(F3))>, <&kp LA(F3)>;
+		};
+		f4: tap_dance_f4 {
+				compatible = "zmk,behavior-tap-dance";
+				#binding-cells = <0>;
+				tapping-term-ms = <155>;
+				bindings = <ASF(F4)>, <ASF(LC(F4))>, <&kp LA(F4)>;
+		};
+		f5: tap_dance_f5 {
+				compatible = "zmk,behavior-tap-dance";
+				#binding-cells = <0>;
+				tapping-term-ms = <155>;
+				bindings = <ASF(F5)>, <ASF(LC(F5))>, <&kp LA(F5)>;
+		};
+		f6: tap_dance_f6 {
+				compatible = "zmk,behavior-tap-dance";
+				#binding-cells = <0>;
+				tapping-term-ms = <155>;
+				bindings = <ASF(F6)>, <ASF(LC(F6))>, <&kp LA(F6)>;
+		};
+		f7: tap_dance_f7 {
+				compatible = "zmk,behavior-tap-dance";
+				#binding-cells = <0>;
+				tapping-term-ms = <155>;
+				bindings = <ASF(F7)>, <ASF(LC(F7))>, <&kp LA(F7)>;
+		};
+		f8: tap_dance_f8 {
+				compatible = "zmk,behavior-tap-dance";
+				#binding-cells = <0>;
+				tapping-term-ms = <155>;
+				bindings = <ASF(F8)>, <ASF(LC(F8))>, <&kp LA(F8)>;
+		};
+		f9: tap_dance_f9 {
+				compatible = "zmk,behavior-tap-dance";
+				#binding-cells = <0>;
+				tapping-term-ms = <155>;
+				bindings = <ASF(F9)>, <ASF(LC(F9))>, <&kp LA(F9)>;
+		};
+		f10: tap_dance_f10 {
+				compatible = "zmk,behavior-tap-dance";
+				#binding-cells = <0>;
+				tapping-term-ms = <155>;
+				bindings = <ASF(F10)>, <ASF(LC(F10))>, <&kp LA(F10)>;
+		};
+		f11: tap_dance_f11 {
+				compatible = "zmk,behavior-tap-dance";
+				#binding-cells = <0>;
+				tapping-term-ms = <155>;
+				bindings = <ASF(F11)>, <ASF(LC(F11))>, <&kp LA(F11)>;
+		};
+		f12: tap_dance_f12 {
+				compatible = "zmk,behavior-tap-dance";
+				#binding-cells = <0>;
+				tapping-term-ms = <155>;
+				bindings = <ASF(F12)>, <ASF(LC(F12))>, <&kp LA(F12)>;
+		};
   };
 
 keymap {
 compatible = "zmk,keymap";
+/*
+default_layer {
+bindings = <
+AS(TAB) &kp Q &kp W &kp F &kp P &kp G &kp J &kp L &kp U &kp Y AS(SEMICOLON) &kp BACKSPACE
+&kp LSFT &kp A &kp R &kp S &kp T &kp D &kp H &kp N &kp E &kp I &kp O ASR(ENTER)
+&kp LCTL &kp Z &kp X &kp C &kp V &kp B &kp K &kp M AS(COMMA) AS(DOT) AS(SLASH) &kp RSFT
+&lm LR3 LCTL &kp LALT &lt LWR SPACE &mo RSE &kp RCTL &kp RALT
+>;
+};
+*/
 
 default_layer {
-label="646546";
 bindings = <
 AS(TAB) AS(Q) AS(W) AS(F) AS(P) AS(G) AS(J) AS(L) AS(U) AS(Y) AS(SEMICOLON) &kp BACKSPACE
-&kp LSFT AS(A) AS(R) AS(S) AS(T) AS(D) AS(H) AS(N) AS(E) AS(I) AS(O) AS(ENTER)
-&kp LCTL AS(Z) AS(X) AS(C) AS(V) AS(B) AS(K) AS(M) AS(COMMA) AS(DOT) AS(SLASH) &kp RSFT 
+&kp LSFT AS(A) AS(R) AS(S) AS(T) AS(D) AS(H) AS(N) AS(E) AS(I) AS(O) ASR(ENTER)
+&kp LCTL AS(Z) AS(X) AS(C) AS(V) AS(B) AS(K) AS(M) AS(COMMA) AS(DOT) AS(SLASH) &kp RSFT
+&lm LR3 LCTL &kp LALT &lt LWR SPACE &mo RSE &kp RCTL &kp RALT
+>;
+};
+
+
+game_layer {
+bindings = <
+&kp TAB &kp Q &kp W &kp F &kp P &kp G &kp J &kp L &kp U &kp Y &kp SEMICOLON &kp BACKSPACE
+&kp LSFT &kp A &kp R &kp S &kp T &kp D &kp H &kp N &kp E &kp I &kp O &kp ENTER
+&kp LCTL &kp Z &kp X &kp C &kp V &kp B &kp K &kp M &kp COMMA &kp DOT &kp SLASH &kp RSFT
 &lm LR3 LCTL &kp LALT &lt LWR SPACE &mo RSE &kp RCTL &kp RALT
 >;
 };
 
 lower_layer {
 bindings = <
-&mkp MB3 &trans &f1 &f2 &f3 &f4 &trans &kp KP_N7 &kp KP_N8 &kp KP_N9 &kp KP_MINUS &kp KP_PLUS
-&trans &kp ESC &f5 &f6 &f7 &f8 &trans &kp KP_N4 &kp KP_N5 &kp KP_N6 &kp KP_N0 &trans
-&trans &trans &f9 &f10 &f11 &f12 &trans &kp KP_N1 &kp KP_N2 &kp KP_N3 &kp KP_SLASH &kp KP_ASTERISK
+&mkp MCLK &mkp LCLK &f1 &f2 &f3 &f4 &trans &kp KP_N7 &kp KP_N8 &kp KP_N9 &kp KP_MINUS &kp KP_PLUS
+&trans &kp ESC &f5 &f6 &f7 &f8 &trans &kp KP_N4 &kp KP_N5 &kp KP_N6 &kp KP_N0 &kp KP_ASTERISK
+&trans &mo NMB &f9 &f10 &f11 &f12 &trans &kp KP_N1 &kp KP_N2 &kp KP_N3 &kp KP_SLASH &trans
 &trans &trans &trans &trans &trans &trans
 >;
 };
@@ -175,28 +242,39 @@ bindings = <
 raise_layer {
 bindings = <
 &kp EXCL &kp AT &kp HASH &kp DLLR &kp PRCNT &kp CARET &kp PG_UP &kp LC(C) &kp UP &kp LC(V) &kp K_APP &kp DEL
-&trans &kp STAR &kp LPAR &kp RPAR AS(MINUS) AS(EQUAL) &kp PG_DN &kp LEFT &kp DOWN &kp RIGHT AS(SINGLE_QUOTE) &kp LC(LS(ENTER))
-&trans AS(BSLH) AS(LBKT) AS(RBKT) AS(GRAVE) &kp AMPS &trans AS(HOME) &kp LC(X) AS(END) &kp RGUI &trans
-&trans &trans &mt LCTRL SPACE &trans &trans
+&trans &kp STAR &kp LPAR &kp RPAR ASR(MINUS) ASR(EQUAL) &kp PG_DN &kp LEFT &kp DOWN &kp RIGHT ASR(SINGLE_QUOTE) &kp LC(LS(ENTER))
+&trans ASR(BSLH) ASR(LBKT) ASR(RBKT) ASR(GRAVE) &kp AMPS &trans ASS(HOME) &ass LC(A) LC(X) ASS(END) &kp RGUI &trans
+&trans &trans &mt LCTRL &trans &trans &trans
 >;
 };
 
 LR3 {
 	bindings = <
-		&mkp MB1 &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
-		&trans &trans &trans &trans &trans &trans &trans &kp KP_MINUS &trans &kp KP_PLUS &trans &kp LS(F15)
-		&trans &trans &trans &trans &trans &trans &trans &kp RA(RS(END)) &trans &kp RA(RS(HOME)) &trans &trans
+		&trans &trans &trans &trans &trans &trans &volUp &trans &trans &trans &trans &trans
+		&trans &trans &trans &trans &trans &trans &volDown &kp KP_MINUS &trans &kp KP_PLUS &trans &kp F21
+		&trans &trans &trans &trans &trans &trans &pause &kp RA(RS(END)) &trans &kp RA(RS(HOME)) &trans &trans
 		&trans &trans &trans &trans &trans &trans
 		>;
 };
 
-adjust_layer {
-	bindings = <
-&kp KP_NUM &trans &trans &trans &trans &trans &kp K_VOL_UP &kp RG(LA(LC(LS(N7)))) &kp RG(RA(N8)) &kp RG(LA(LC(LS(N9)))) &trans &kp PAUSE_BREAK
-&kp CAPS &kp STAR &trans &trans &trans &trans &kp K_VOL_DN &kp RG(LA(LC(LS(N4)))) &kp RG(LA(LC(LS(N5)))) &kp RG(LA(LC(LS(N6)))) &kp RG(LA(LC(LS(KP_N0)))) &trans
-&kp INS &trans &trans &trans &trans &trans &kp K_PP &kp RG(LA(LC(LS(N1)))) &kp RG(LA(LC(LS(N2)))) &kp RG(LA(LC(LS(N3)))) &trans &trans
-&trans &trans &trans &trans &bt BT_CLR &trans
+NMB_layer {
+bindings = <
+		&trans &trans &trans &trans &trans &trans &trans AA(N7) AA(N8) AA(N9) &trans &trans
+		&trans &trans &trans &trans &trans &trans &trans AA(N4) AA(N5) AA(N6) AA(N0) &trans
+		&trans &trans &trans &trans &trans &trans &trans AA(N1) AA(N2) AA(N3) &trans &trans
+		&trans &trans &trans &trans &trans &trans
 >;
 };
+
+adjust_layer {
+	bindings = <
+&kp KP_NUM &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4 &trans &kp RG(LA(LC(LS(N7)))) &kp RG(RA(N8)) &kp RG(LA(LC(LS(N9)))) &trans &kp PAUSE_BREAK
+&tog GAM &kp CAPS &trans &trans &trans &bt BT_CLR &trans &kp RG(LA(LC(LS(N4)))) &kp RG(LA(LC(LS(N5)))) &kp RG(LA(LC(LS(N6)))) &kp RG(LA(LC(LS(KP_N0)))) &trans
+&kp INS &trans &trans &trans &trans &trans &trans &kp RG(LA(LC(LS(N1)))) &kp RG(LA(LC(LS(N2)))) &kp RG(LA(LC(LS(N3)))) &trans &trans
+&trans &trans &trans &trans &trans &trans
+>;
+};
+
 };
 };
+
